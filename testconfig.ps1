@@ -1,6 +1,6 @@
 configuration TestConfig
 {
-    Node WebServer
+    Node WebServerCC
     {
         WindowsFeature IIS
         {

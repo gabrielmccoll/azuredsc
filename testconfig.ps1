@@ -1,6 +1,10 @@
 configuration TestConfig
 {
-    Node WebServerCC
+
+    Import-DscResource –ModuleName "PSDesiredStateConfiguration" 
+    Import-DscResource –ModuleName "xComputerManagement"
+    
+    Node webservercc
     {
         WindowsFeature IIS
         {
@@ -9,6 +13,16 @@ configuration TestConfig
             IncludeAllSubFeature = $true
 
         }
+
+        xScheduledTask xScheduledTaskDailyAdd
+        {
+            TaskName = "Daily"
+            ActionExecutable = "C:\windows\system32\WindowsPowerShell\v1.0\powershell.exe"
+            ScheduleType = 'Daily'
+            DaysInterval = 1
+            
+        }
+
     }
 
     Node NotWebServer
